@@ -56,6 +56,43 @@ public:
     }
 };
 
+class Segment {
+private:
+    Point start;
+    Point finish;
+
+public:
+    Segment() : start(), finish() {
+        std::cout << "Segment()\n";
+    }
+
+    Segment(int x1, int y1, int x2, int y2)
+        : start(x1, y1), finish(x2, y2) {
+        std::cout << "Segment(int, int, int, int)\n";
+    }
+
+    Segment(const Segment& other)
+        : start(other.start), finish(other.finish) {
+        std::cout << "Segment(copy)\n";
+    }
+
+    ~Segment() {
+        std::cout << "~Segment()\n";
+    }
+
+    void move(int dx, int dy) {
+        start.move(dx, dy);
+        finish.move(dx, dy);
+    }
+
+    void print() const {
+        std::cout << "start: ";
+        start.print();
+        std::cout << "finish: ";
+        finish.print();
+    }
+};
+
 int main() {
     {
         Point b(2, 3);
@@ -112,6 +149,13 @@ int main() {
         p->print();
         // p->setX(20);
         delete p;
+    }
+
+        std::cout << "--- composition: objects ---\n";
+    {
+        Segment s(2, 5, 8, 9);
+        s.move(3, 0);
+        s.print();
     }
 
     return 0;
