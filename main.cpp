@@ -20,6 +20,8 @@ public:
         std::cout << "Point(copy)\n";
     }
 
+    Point& operator=(const Point&) = default;
+
     ~Point() {
         std::cout << "~Point()\n";
     }
@@ -44,17 +46,37 @@ int main() {
     }
 
     std::cout << "--- dynamic ---\n";
-
     Point* saved = nullptr;
     {
         Point* p = new Point();
         saved = p;
     }
-
     std::cout << "--- after block ---\n";
     saved->move(4, 5);
     saved->print();
     delete saved;
+
+    std::cout << "--- object assignment ---\n";
+    {
+        Point a(3, 8);
+        Point b(9, 1);
+        b = a;
+        a.move(2, 0);
+        b.move(0, 4);
+        a.print();
+        b.print();
+    }
+
+    std::cout << "--- pointer assignment ---\n";
+    {
+        Point* p = new Point(3, 8);
+        Point* q = p;
+        p->move(2, 0);
+        q->move(0, 4);
+        p->print();
+        q->print();
+        delete q;
+    }
 
     return 0;
 }
