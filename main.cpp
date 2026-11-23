@@ -210,6 +210,18 @@ int main() {
         holder.print();
     }
 
+        std::cout << "--- copying PointHolder ---\n";
+    {
+        PointHolder a(2, 7);
+        PointHolder b(a);
+        b.move(5, 1);
+
+        std::cout << "a: ";
+        a.print();
+        std::cout << "b: ";
+        b.print();
+    }
+
     return 0;
 }
 
