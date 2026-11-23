@@ -93,6 +93,10 @@ public:
     }
 };
 
+class PlainPoint : public Point {
+};
+
+
 int main() {
     {
         Point b(2, 3);
@@ -156,6 +160,13 @@ int main() {
         Segment s(2, 5, 8, 9);
         s.move(3, 0);
         s.print();
+    }
+
+        std::cout << "--- implicit constructors ---\n";
+    {
+        PlainPoint p;
+        p.move(7, 2);
+        p.print();
     }
 
     return 0;
