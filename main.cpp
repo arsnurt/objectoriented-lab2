@@ -105,5 +105,15 @@ int main() {
         c.print();
     }
 
+    std::cout << "--- base pointer ---\n";
+    {
+        Point* p = new ColoredPoint(4, 7, 3);
+        p->move(2, 1);
+        p->print();
+        // p->setX(20);
+        delete p;
+    }
+
     return 0;
 }
+
