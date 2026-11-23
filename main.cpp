@@ -96,6 +96,40 @@ public:
 class PlainPoint : public Point {
 };
 
+class PointHolder {
+private:
+    Point* point;
+
+public:
+    PointHolder() : point(new Point()) {
+        std::cout << "PointHolder()\n";
+    }
+
+    PointHolder(int x, int y) : point(new Point(x, y)) {
+        std::cout << "PointHolder(int, int)\n";
+    }
+
+    PointHolder(const PointHolder& other)
+        : point(new Point(*other.point)) {
+        std::cout << "PointHolder(copy)\n";
+    }
+
+    PointHolder& operator=(const PointHolder&) = delete;
+
+    ~PointHolder() {
+        std::cout << "~PointHolder(): begin\n";
+        delete point;
+        std::cout << "~PointHolder(): end\n";
+    }
+
+    void move(int dx, int dy) {
+        point->move(dx, dy);
+    }
+
+    void print() const {
+        point->print();
+    }
+};
 
 int main() {
     {
@@ -167,6 +201,13 @@ int main() {
         PlainPoint p;
         p.move(7, 2);
         p.print();
+    }
+
+        std::cout << "--- composition: pointer ---\n";
+    {
+        PointHolder holder(8, 3);
+        holder.move(1, 2);
+        holder.print();
     }
 
     return 0;
