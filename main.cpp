@@ -222,6 +222,19 @@ int main() {
         b.print();
     }
 
+        std::cout << "--- slicing ---\n";
+    {
+        ColoredPoint source(3, 8, 5);
+        Point copy = source;
+
+        source.setX(12);
+
+        std::cout << "source:\n";
+        source.print();
+        std::cout << "copy:\n";
+        copy.print();
+    }
+
     return 0;
 }
 
