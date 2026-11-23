@@ -23,10 +23,12 @@ public:
         x += dx;
         y += dy;
     }
-    void print() const {
-        std::cout << "x=" << x << ", y=" << y << '\n';
-    }
+    void print() const;
 };
+void Point::print() const {
+    std::cout << "x=" << x << ", y=" << y << '\n';
+}
+
 
 class ColoredPoint : public Point {
 private:
