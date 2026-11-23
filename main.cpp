@@ -8,6 +8,10 @@ protected:
     int x;
 
 public:
+    Point() : y(0), x(0) {
+        std::cout << "Point()\n";
+    }
+
     Point(int px, int py) : y(py), x(px) {
         std::cout << "Point(int, int)\n";
     }
@@ -31,16 +35,26 @@ public:
 };
 
 int main() {
-    Point b(2, 3);
-    Point c(b);
+    {
+        Point b(2, 3);
+        Point c(b);
+        c.move(10, 0);
+        b.print();
+        c.print();
+    }
 
-    c.move(10, 0);
+    std::cout << "--- dynamic ---\n";
 
-    std::cout << "b: ";
-    b.print();
+    Point* saved = nullptr;
+    {
+        Point* p = new Point();
+        saved = p;
+    }
 
-    std::cout << "c: ";
-    c.print();
+    std::cout << "--- after block ---\n";
+    saved->move(4, 5);
+    saved->print();
+    delete saved;
 
     return 0;
 }
